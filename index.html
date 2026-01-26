@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyMed Consultorios | Tu Salud en Manos Expertas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="brand">
+                <img src="images/logo.png" alt="SkyMed Consultorios" class="logo-image">
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#especialidades">Especialidades</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="tel:02320409730" class="phone-btn">
+                    <i class="fa-solid fa-phone"></i> 02320-409730
+                </a>
+                <a href="https://wa.me/5491166111111" class="cta-btn">SOLICITAR TURNO</a>
+            </div>
+            
+            <button class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg">
+            <img src="images/hero.jpg" alt="SkyMed Consultorios" class="hero-image">
+        </div>
+        <div class="container-fluid">
+            <div class="hero-wrapper">
+                <div class="hero-left">
+                    <h1 class="hero-heading">
+                        Tu Salud en Manos<br>
+                        <span class="highlight">Expertas en Pilar</span>
+                    </h1>
+                    <p class="hero-text">Atención médica integral con profesionales de primer nivel y tecnología de última generación.</p>
+                    
+                    <div class="hero-ctas">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fa-solid fa-user-circle"></i>
+                            <div>
+                                <strong>Soy Paciente Habitual</strong>
+                                <small>Login</small>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/5491166111111" class="btn btn-secondary">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <div>
+                                <strong>Es Mi Primera Vez</strong>
+                                <small>Ayuda por WhatsApp</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <div class="specialties-card">
+                        <h3 class="card-title">Nuestras Especialidades</h3>
+                        <div class="specialties-grid">
+                            <div class="spec-item" data-specialty="audiologia">
+                                <div class="spec-icon"><i class="fa-solid fa-ear-listen"></i></div>
+                                <p>Audiología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="cardiologia">
+                                <div class="spec-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                                <p>Cardiología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="cirugia-plastica">
+                                <div class="spec-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                                <p>Cirugía Plástica</p>
+                            </div>
+                            <div class="spec-item" data-specialty="clinica-medica">
+                                <div class="spec-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                                <p>Clínica Médica</p>
+                            </div>
+                            <div class="spec-item" data-specialty="dermatologia">
+                                <div class="spec-icon"><i class="fa-solid fa-hand-dots"></i></div>
+                                <p>Dermatología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="diabetologia">
+                                <div class="spec-icon"><i class="fa-solid fa-droplet"></i></div>
+                                <p>Diabetología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="endocrinologia">
+                                <div class="spec-icon"><i class="fa-solid fa-dna"></i></div>
+                                <p>Endocrinología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="flebologia">
+                                <div class="spec-icon"><i class="fa-solid fa-heart-circle-bolt"></i></div>
+                                <p>Flebología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="gastroenterologia">
+                                <div class="spec-icon"><i class="fa-solid fa-stomach"></i></div>
+                                <p>Gastroenterología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="ginecologia">
+                                <div class="spec-icon"><i class="fa-solid fa-person-dress"></i></div>
+                                <p>Ginecología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="hepatologia">
+                                <div class="spec-icon"><i class="fa-solid fa-liver"></i></div>
+                                <p>Hepatología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="imagenes">
+                                <div class="spec-icon"><i class="fa-solid fa-x-ray"></i></div>
+                                <p>Imágenes</p>
+                            </div>
+                            <div class="spec-item" data-specialty="kinesiologia">
+                                <div class="spec-icon"><i class="fa-solid fa-person-walking"></i></div>
+                                <p>Kinesiología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="neurocirugia">
+                                <div class="spec-icon"><i class="fa-solid fa-brain"></i></div>
+                                <p>Neurocirugía</p>
+                            </div>
+                            <div class="spec-item" data-specialty="nutricion">
+                                <div class="spec-icon"><i class="fa-solid fa-apple-whole"></i></div>
+                                <p>Nutrición</p>
+                            </div>
+                            <div class="spec-item" data-specialty="obstetricia">
+                                <div class="spec-icon"><i class="fa-solid fa-baby"></i></div>
+                                <p>Obstetricia</p>
+                            </div>
+                            <div class="spec-item" data-specialty="oftalmologia">
+                                <div class="spec-icon"><i class="fa-solid fa-eye"></i></div>
+                                <p>Oftalmología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="otorrinolaringologia">
+                                <div class="spec-icon"><i class="fa-solid fa-nose"></i></div>
+                                <p>Otorrinolaringología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="pediatria">
+                                <div class="spec-icon"><i class="fa-solid fa-child"></i></div>
+                                <p>Pediatría</p>
+                            </div>
+                            <div class="spec-item" data-specialty="psicologia">
+                                <div class="spec-icon"><i class="fa-solid fa-head-side-virus"></i></div>
+                                <p>Psicología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="psicopedagogia">
+                                <div class="spec-icon"><i class="fa-solid fa-book-medical"></i></div>
+                                <p>Psicopedagogía</p>
+                            </div>
+                            <div class="spec-item" data-specialty="traumatologia">
+                                <div class="spec-icon"><i class="fa-solid fa-bone"></i></div>
+                                <p>Traumatología</p>
+                            </div>
+                            <div class="spec-item" data-specialty="urologia">
+                                <div class="spec-icon"><i class="fa-solid fa-kidneys"></i></div>
+                                <p>Urología</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Cards Section -->
+    <section class="info-cards-section">
+        <div class="container-fluid">
+            <div class="info-cards-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3>Horario de Atención</h3>
+                    <div class="info-content">
+                        <p><strong>Lunes a Viernes:</strong> 8:00 - 20:00 hs</p>
+                        <p><strong>Sábados:</strong> 9:00 - 12:00 hs</p>
+                        <p class="highlight-text">Turnos Online 24 hs</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon green">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h3>Recetas WhatsApp</h3>
+                    <div class="info-content">
+                        <p>Solicite sus recetas al profesional correspondiente sin esperar turnos.</p>
+                        <a href="https://wa.me/5491166111111" class="card-link">Solicitar Receta <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon blue">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <h3>Estacionamiento</h3>
+                    <div class="info-content">
+                        <p>Estacionamiento libre disponible para nuestros pacientes.</p>
+                        <p class="small-text">Consultorio Skymed - Las Amapolas 325</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="container-fluid">
+            <div class="about-wrapper">
+                <div class="about-image">
+                    <img src="images/consultorio.jpg" alt="SkyMed Consultorio" class="consultorio-img">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-heading">Nuestro Consultorio</h2>
+                    <p class="about-intro">Somos un equipo de médicos cuyo objetivo es la atención personalizada de nuestros pacientes.</p>
+                    
+                    <div class="about-feature">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <div>
+                            <h4>Nuestro Lema</h4>
+                            <p>"Experiencia, Trayectoria y Calidez Humana"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-feature">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-history"></i>
+                        </div>
+                        <div>
+                            <h4>Nuestra Historia</h4>
+                            <p>Más de 18 años trabajando en Del Viso, Pilar. Un equipo que creció unido por la pasión y el amor por nuestra profesión.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-feature">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div>
+                            <h4>Atención Centrada en el Paciente</h4>
+                            <p>Evitamos la fragmentación del sistema de salud, posicionando al paciente en el centro de nuestros cuidados con trabajo en equipo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Medical Checkups Section -->
+    <section id="especialidades" class="checkups-section">
+        <div class="container-fluid">
+            <p class="section-subtitle">Prevención y cuidado integral de tu salud</p>
+            
+            <div class="checkups-grid">
+                <div class="checkup-card">
+                    <div class="checkup-icon">
+                        <i class="fa-solid fa-heartbeat"></i>
+                    </div>
+                    <h3>Examen Periódico de Salud</h3>
+                    <p>Chequeo clínico anual para valorar el estado de salud global y prevenir enfermedades.</p>
+                </div>
+                
+                <div class="checkup-card">
+                    <div class="checkup-icon">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3>Chequeo Cardiológico</h3>
+                    <p>Profesionales calificados en prevención de enfermedades cardiovasculares y diagnóstico precoz.</p>
+                </div>
+                
+                <div class="checkup-card">
+                    <div class="checkup-icon">
+                        <i class="fa-solid fa-bone"></i>
+                    </div>
+                    <h3>Chequeo Traumatológico</h3>
+                    <p>Examen completo desde pies hasta hombros, incluyendo patologías asociadas.</p>
+                </div>
+                
+                <div class="checkup-card">
+                    <div class="checkup-icon">
+                        <i class="fa-solid fa-apple-whole"></i>
+                    </div>
+                    <h3>Chequeo Nutricional</h3>
+                    <p>Equipo multidisciplinario para el manejo profesional de tu salud alimentaria.</p>
+                </div>
+                
+                <div class="checkup-card">
+                    <div class="checkup-icon">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h3>Chequeo Oftalmológico</h3>
+                    <p>Tecnología de última generación para un estudio ocular completo y prevención visual.</p>
+                </div>
+                
+                <div class="checkup-card">
+                    <div class="checkup-icon">
+                        <i class="fa-solid fa-smoking-ban"></i>
+                    </div>
+                    <h3>Programa Anti-Tabaco</h3>
+                    <p>Acompañamiento profesional para dejar de fumar de manera efectiva y saludable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Providers Section -->
+    <section id="nosotros" class="insurance-section">
+        <div class="container-fluid">
+            <p class="section-subtitle">Trabajamos con las principales coberturas médicas</p>
+            <div class="insurance-grid">
+                <div class="insurance-logo">OSDE</div>
+                <div class="insurance-logo">MEDICUS</div>
+                <div class="insurance-logo">SWISS MEDICAL</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contacto" class="footer-section">
+        <div class="container-fluid">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3291.564778396593!2d-58.829033324267496!3d-34.41295994801332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc9e5c7b3b3b3b%3A0x1b3b3b3b3b3b3b3b!2sLas%20Amapolas%20325%2C%20B1669%20Del%20Viso%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1685000000000!5m2!1ses!2sar" width="100%" height="450" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                
+                <div class="footer-right">
+                    <h3 class="footer-title">Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>02320-409730</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>116-611-1111</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Las Amapolas 325, Del Viso - Pilar</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="footer-title mt">Horarios</h3>
+                    <p class="schedule">Lunes a Viernes: 08:00 - 20:00 hs<br>Sábados: 09:00 - 12:00 hs</p>
+                    
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 SkyMed Consultorios Médicos. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Doctors -->
+    <div class="modal" id="doctorsModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="modal-title">Nuestros Profesionales</h2>
+            <div class="doctors-grid" id="doctorsGrid">
+                <!-- Doctors will be inserted here by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
