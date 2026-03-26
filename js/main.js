@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     // Intersection Observer for animations
     const observerOptions = {
         threshold: 0.1,
@@ -145,111 +145,235 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScroll = currentScroll;
     });
 
-    // Modal functionality for specialties
-    const modal = document.getElementById('doctorsModal');
-    
-    if (!modal) {
-        console.error('Modal element not found');
-        return;
+    // ===== POPUP SYSTEM =====
+    const TURNO_URL = 'https://blipdoc.com/portal/skymedconsultorios';
+
+    // Estudios info (for popup when clicking a staff card)
+    const estudiosInfo = {
+        'ginecologia': { icon: 'fa-solid fa-person-dress', title: 'Ginecología', items: ['Pap', 'Colposcopia', 'Colocación y retiro de DIU', 'Colocación y retiro de Chip', 'Biopsia de cuello', 'Cauterización de Pólipos'] },
+        'cirugia-plastica': { icon: 'fa-solid fa-hand-holding-medical', title: 'Cirugía Plástica', items: ['Cirugía Estética Corporal y Facial', 'Adecuación de Género', 'Pacientes Trans/NB'] },
+        'gastroenterologia': { icon: 'fa-solid fa-microscope', title: 'Gastroenterología', items: ['Endoscopias', 'Test SIBO', 'Test Lactosa', 'Test Helicobacter Pylori'] },
+        'dermatologia': { icon: 'fa-solid fa-hand-dots', title: 'Dermatología', items: ['Luz pulsada', 'Mesoterapia', 'Skin Booster', 'Radio Frecuencia', 'Plasma rico en plaquetas', 'Peeling', 'Ultracavitación', 'Dermaplaning', 'Microdermoabrasión', 'Botox', 'Relleno'] },
+        'urologia': { icon: 'fa-solid fa-vial', title: 'Urología', items: ['Flujometría', 'Penoscopías', 'Topicación', 'Electro fulguración de verrugas genitales'] },
+        'diagnosticos-por-imagenes': { icon: 'fa-solid fa-x-ray', title: 'Diagnósticos por Imágenes', items: ['Ecografías Craneales', 'Ecodoppler', 'Ecografía completa de Abdomen', 'Ecografías Ginecológicas', 'Ecografías Musculoesquelética', 'Punciones guiadas por ecografía'] },
+        'nutricion': { icon: 'fa-solid fa-apple-whole', title: 'Nutrición', items: ['Medición Antropométrica'] },
+        'cardiologia': { icon: 'fa-solid fa-heart-pulse', title: 'Cardiología', items: ['Electrocardiograma (ECG)', 'Ecocardiograma doppler', 'Holter cardíaco de 24h', 'MAPA (presurometría de 24h)'] },
+        'reeducacion-postural-e-infiltraciones': { icon: 'fa-solid fa-person-walking', title: 'Reeducación Postural e Infiltraciones', items: ['Maniobras de RPG y Vértigo'] },
+        'flebologia': { icon: 'fa-solid fa-heart-circle-bolt', title: 'Flebología', items: ['Prácticas Esclerosantes', 'Trans Ilum.'] },
+        'neumologia': { icon: 'fa-solid fa-lungs', title: 'Neumología', items: ['Espirometría', 'Oximetría de pulso', 'Filtro viral Bacterial', 'Módulo Poligrafía Respiratoria'] }
+    };
+
+    // All staff members (for popup when clicking an estudio card)
+    const staffMembers = [
+        { name: 'Dra. Bramati, María Laura', specialty: 'cirugia-plastica', specialtyLabel: 'Cirugía Plástica', image: 'images/staff/1.jpeg', insurance: 'Osde 310 en adelante y particular' },
+        { name: 'Dr. Jiménez Torrado, Juan Manuel', specialty: 'urologia', specialtyLabel: 'Urología', image: 'images/staff/2.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dr. Peirano, Joaquín', specialty: 'cardiologia', specialtyLabel: 'Cardiología', image: 'images/staff/3.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dr. Colangelo, Héctor', specialty: 'cardiologia', specialtyLabel: 'Cardiología', image: 'images/staff/4.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dr. De Pina Diaz Pedro, Flavio', specialty: 'flebologia', specialtyLabel: 'Flebología', image: 'images/staff/5.jpeg', insurance: 'Osde y particular' },
+        { name: 'Lic. Mombelli, Gabriela', specialty: 'rpg', specialtyLabel: 'RPG', image: 'images/staff/6.jpeg', insurance: 'Sólo particular' },
+        { name: 'Dr. Gomez, José Luis', specialty: 'dermatologia', specialtyLabel: 'Dermatología', image: 'images/staff/7.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Gomez, Luciana', specialty: null, specialtyLabel: '', image: 'images/staff/8.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dr. Firman, Elíseo', specialty: 'traumatologia-de-rodilla', specialtyLabel: 'Traumatología de Rodilla', image: 'images/staff/9.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dr. Carrizo, Luis', specialty: 'otorrinolaringologia', specialtyLabel: 'Otorrinolaringología', image: 'images/staff/10.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Giusti, Cristina', specialty: 'otorrinolaringologia', specialtyLabel: 'Otorrinolaringología', image: 'images/staff/11.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dr. Pace, Germán', specialty: 'traumatologia-de-pie', specialtyLabel: 'Traumatología de Pie', image: 'images/staff/12.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Diego, Andrea', specialty: 'clinica-medica', specialtyLabel: 'Clínica Médica', image: 'images/staff/13.jpeg', insurance: 'Osde y particular' },
+        { name: 'Lic. Reynals, Lucrecia', specialty: 'psicologia', specialtyLabel: 'Psicología', image: 'images/staff/14.jpeg', insurance: 'Sólo particular' },
+        { name: 'Lic. Sierra, Cristina', specialty: 'nutricion', specialtyLabel: 'Nutrición', image: 'images/staff/15.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dr. Fraga, Gustavo', specialty: 'diagnosticos-por-imagenes', specialtyLabel: 'Diagnóstico por Imágenes', image: 'images/staff/16.jpeg', insurance: 'Osde y particular' },
+        { name: 'Lic. Schlumpp, Mariana', specialty: 'nutricion', specialtyLabel: 'Nutrición', image: 'images/staff/17.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Bado, Cristina', specialty: 'ginecologia', specialtyLabel: 'Ginecología', image: 'images/staff/18.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Heer, Carolina', specialty: 'ginecologia', specialtyLabel: 'Ginecología', image: 'images/staff/19.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Signorelli, Mariela', specialty: 'gastroenterologia', specialtyLabel: 'Gastroenterología', image: 'images/staff/20.jpeg', insurance: 'Sólo particular' },
+        { name: 'Dra. Linares, María Eugenia', specialty: 'gastroenterologia', specialtyLabel: 'Gastroenterología', image: 'images/staff/21.jpeg', insurance: 'Sólo particular' },
+        { name: 'Dra. Pulvirenti, Liliana', specialty: 'pediatria', specialtyLabel: 'Pediatría', image: 'images/staff/22.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dr. Bruhn, Arturo', specialty: 'pediatria', specialtyLabel: 'Pediatría', image: 'images/staff/23.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dr. Repetto, Santiago', specialty: 'pediatria', specialtyLabel: 'Pediatría', image: 'images/staff/24.jpeg', insurance: 'Osde a partir 310 y particular' },
+        { name: 'Dr. Asmus, Humberto', specialty: 'neurocirugia', specialtyLabel: 'Neurocirugía', image: 'images/staff/25.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Villarreal, Laura', specialty: 'fonoaudiologia', specialtyLabel: 'Fonoaudiología', image: 'images/staff/26.jpeg', insurance: 'Swiss Medical y particular' },
+        { name: 'Dra. Moral, Rosario', specialty: 'endocrinologia-y-diabetologia', specialtyLabel: 'Endocrinología y Diabetología', image: 'images/staff/27.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Schaffer, María Cecilia', specialty: 'clinica-medica-y-diabetologia', specialtyLabel: 'Clínica Médica y Diabetología', image: 'images/staff/28.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Garnero, Victoria', specialty: 'endocrinologia', specialtyLabel: 'Endocrinología', image: 'images/staff/29.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Pagliarino, María Sol', specialty: 'dermatologia', specialtyLabel: 'Dermatología', image: 'images/staff/30.jpeg', insurance: 'Osde y particular' },
+        { name: 'Lic. Naveyras, María Rosalía', specialty: 'psicologia', specialtyLabel: 'Psicología', image: 'images/staff/31.jpeg', insurance: 'Sólo particular' },
+        { name: 'Dr. González Massa, Marcos', specialty: 'proctologia-y-cirugia-general', specialtyLabel: 'Proctología y Cirugía General', image: 'images/staff/32.jpeg', insurance: 'Osde, Swiss Medical y particular' },
+        { name: 'Dr. Avellaneda, Nicolás', specialty: 'proctologia', specialtyLabel: 'Proctología', image: 'images/staff/33.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dr. Carnero, Lisandro', specialty: 'flebologia-y-cirugia-cardiovascular', specialtyLabel: 'Flebología y Cirugía Cardiovascular', image: 'images/staff/34.jpeg', insurance: 'Sólo particular' },
+        { name: 'Dr. Tricarico, Juan Martín', specialty: 'proctologia-y-cirugia-general', specialtyLabel: 'Proctología y Cirugía General', image: 'images/staff/35.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Décima, Tamara', specialty: 'neumonologia', specialtyLabel: 'Neumonología', image: 'images/staff/36.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Arismendi, Lorena', specialty: 'cardiologia', specialtyLabel: 'Cardiología', image: 'images/staff/37.jpeg', insurance: 'Osde y particular' },
+        { name: 'Lic. Lorenzo, Andrea', specialty: 'psicologia', specialtyLabel: 'Psicología', image: 'images/staff/38.jpeg', insurance: 'Sólo particular' },
+        { name: 'Dra. Kempel, Mariana', specialty: 'clinica-medica', specialtyLabel: 'Clínica Médica', image: 'images/staff/39.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Luna, Analía', specialty: 'oftalmologia', specialtyLabel: 'Oftalmología', image: 'images/staff/40.jpeg', insurance: 'Sólo particular' },
+        { name: 'Dra. Raskovsky, Vanesa', specialty: 'neurologia-infantil', specialtyLabel: 'Neurología Infantil', image: 'images/staff/41.jpeg', insurance: 'Sólo particular' },
+        { name: 'Dr. Imposti, Félix', specialty: 'traumatologia-de-columna', specialtyLabel: 'Traumatología de Columna', image: 'images/staff/42.jpeg', insurance: 'Osde y particular' },
+        { name: 'Dra. Ottonello, Virginia', specialty: 'cardiologia-infantil', specialtyLabel: 'Cardiología Infantil', image: 'images/staff/43.jpeg', insurance: 'Osde y particular' }
+    ];
+
+    // Doctor specialty → estudio key mapping
+    const specToEstudio = {
+        'urologia': 'urologia',
+        'cardiologia': 'cardiologia',
+        'cardiologia-infantil': 'cardiologia',
+        'flebologia': 'flebologia',
+        'flebologia-y-cirugia-cardiovascular': 'flebologia',
+        'rpg': 'reeducacion-postural-e-infiltraciones',
+        'dermatologia': 'dermatologia',
+        'cirugia-plastica': 'cirugia-plastica',
+        'ginecologia': 'ginecologia',
+        'gastroenterologia': 'gastroenterologia',
+        'neumonologia': 'neumologia',
+        'nutricion': 'nutricion',
+        'diagnosticos-por-imagenes': 'diagnosticos-por-imagenes'
+    };
+
+    // Estudio key → doctor specialty keys mapping
+    const estudioToSpecs = {
+        'ginecologia': ['ginecologia'],
+        'gastroenterologia': ['gastroenterologia'],
+        'dermatologia': ['dermatologia'],
+        'urologia': ['urologia'],
+        'cardiologia': ['cardiologia', 'cardiologia-infantil'],
+        'reeducacion-postural-e-infiltraciones': ['rpg'],
+        'flebologia': ['flebologia', 'flebologia-y-cirugia-cardiovascular'],
+        'neumologia': ['neumonologia'],
+        'diagnosticos-por-imagenes': ['oftalmologia', 'diagnosticos-por-imagenes'],
+        'cirugia-plastica': ['cirugia-plastica'],
+        'nutricion': ['nutricion']
+    };
+
+    function normalizeKey(text) {
+        return text.toLowerCase()
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .replace(/\(.*?\)/g, '')
+            .trim()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-|-$/g, '');
     }
-    
-    const modalOverlay = modal.querySelector('.modal-overlay');
-    const modalClose = modal.querySelector('.modal-close');
-    const doctorsGrid = document.getElementById('doctorsGrid');
-    const specItems = document.querySelectorAll('.spec-item');
 
-    // Doctors data
-    const doctorsData = {
-        'cardiologia': [
-            {
-                name: 'Dr. Carlos Méndez',
-                specialty: 'Cardiología',
-                description: 'Especialista en cardiología clínica con más de 15 años de experiencia. Egresado de la Universidad de Buenos Aires, con especialización en enfermedades cardiovasculares.',
-                image: 'https://randomuser.me/api/portraits/men/32.jpg',
-                experience: '15 años de experiencia',
-                education: 'Universidad de Buenos Aires'
-            },
-            {
-                name: 'Dra. María Fernández',
-                specialty: 'Cardiología',
-                description: 'Cardióloga intervencionista especializada en procedimientos mínimamente invasivos. Formada en Europa con amplia trayectoria en Argentina.',
-                image: 'https://randomuser.me/api/portraits/women/44.jpg',
-                experience: '12 años de experiencia',
-                education: 'Universidad Austral'
-            }
-        ]
-    };
+    // Modal setup
+    const modal = document.getElementById('skymedModal');
+    if (modal) {
+        const overlay = modal.querySelector('.modal-overlay');
+        const closeBtn = modal.querySelector('.modal-close');
+        const modalBody = modal.querySelector('.modal-body');
 
-    // Open modal when clicking on specialty
-    specItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            const specialty = item.getAttribute('data-specialty');
-            console.log('Clicked specialty:', specialty);
-            
-            if (doctorsData[specialty]) {
-                showDoctors(doctorsData[specialty]);
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            } else {
-                // For specialties without doctors yet
-                const specialtyName = item.querySelector('p').textContent;
-                showComingSoon(specialtyName);
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    });
-
-    // Close modal
-    const closeModal = () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    };
-
-    modalClose.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', closeModal);
-
-    // Close modal with ESC key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
+        function openModal(html) {
+            modalBody.innerHTML = html;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-    });
 
-    // Show doctors in modal
-    function showDoctors(doctors) {
-        doctorsGrid.innerHTML = doctors.map(doctor => `
-            <div class="doctor-card">
-                <img src="${doctor.image}" alt="${doctor.name}" class="doctor-image">
-                <h3 class="doctor-name">${doctor.name}</h3>
-                <div class="doctor-specialty">${doctor.specialty}</div>
-                <p class="doctor-description">${doctor.description}</p>
-                <div class="doctor-info">
-                    <div class="doctor-info-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>${doctor.education}</span>
-                    </div>
-                    <div class="doctor-info-item">
-                        <i class="fa-solid fa-briefcase"></i>
-                        <span>${doctor.experience}</span>
-                    </div>
-                </div>
-            </div>
-        `).join('');
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (overlay) overlay.addEventListener('click', closeModal);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+        });
+
+        // STAFF PAGE: click staff card → show estudio popup
+        document.querySelectorAll('.staff-card').forEach(function(card) {
+            var specEl = card.querySelector('.staff-card-specialty');
+            if (!specEl) return;
+            var key = normalizeKey(specEl.textContent);
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function() {
+                var estudioKey = specToEstudio[key];
+                var estudio = estudioKey ? estudiosInfo[estudioKey] : null;
+                var html = '';
+                if (estudio) {
+                    html = '<div class="popup-estudio-detail">' +
+                        '<div class="popup-estudio-icon"><i class="' + estudio.icon + '"></i></div>' +
+                        '<h2 class="popup-estudio-title">' + estudio.title + '</h2>' +
+                        '<ul class="popup-estudio-list">' + estudio.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') + '</ul>' +
+                        '<div class="popup-turno"><a href="' + TURNO_URL + '" class="estudio-turno-btn" target="_blank" rel="noopener"><i class="fa-solid fa-calendar-plus"></i> Sacar Turno</a></div>' +
+                        '</div>';
+                } else {
+                    html = '<div class="popup-estudio-detail">' +
+                        '<div class="popup-estudio-icon"><i class="fa-solid fa-user-doctor"></i></div>' +
+                        '<h2 class="popup-estudio-title">' + specEl.textContent + '</h2>' +
+                        '<p class="popup-no-data">Para consultas sobre esta especialidad, comuníquese con nosotros o solicite un turno.</p>' +
+                        '<div class="popup-turno"><a href="' + TURNO_URL + '" class="estudio-turno-btn" target="_blank" rel="noopener"><i class="fa-solid fa-calendar-plus"></i> Sacar Turno</a></div>' +
+                        '</div>';
+                }
+                openModal(html);
+            });
+        });
+
+        // ESTUDIOS PAGE: click estudio card → show doctors popup
+        document.querySelectorAll('.estudio-card').forEach(function(card) {
+            var titleEl = card.querySelector('h3');
+            if (!titleEl) return;
+            var key = normalizeKey(titleEl.textContent);
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.estudio-turno-btn')) return;
+                var matchingSpecs = estudioToSpecs[key] || [];
+                var doctors = staffMembers.filter(function(d) { return matchingSpecs.includes(d.specialty); });
+                var html = '';
+                if (doctors.length) {
+                    html = '<h2 class="popup-doctors-title">Profesionales en ' + titleEl.textContent + '</h2>' +
+                        '<div class="popup-doctors-grid">' +
+                        doctors.map(function(d) {
+                            return '<div class="popup-doctor-card">' +
+                                '<img src="' + d.image + '" alt="' + d.name + '" class="popup-doctor-img">' +
+                                '<h3 class="popup-doctor-name">' + d.name + '</h3>' +
+                                (d.specialtyLabel ? '<p class="popup-doctor-spec">' + d.specialtyLabel + '</p>' : '') +
+                                '<p class="popup-doctor-insurance"><i class="fa-solid fa-shield-heart"></i> ' + d.insurance + '</p>' +
+                                '</div>';
+                        }).join('') +
+                        '</div>' +
+                        '<div class="popup-turno"><a href="' + TURNO_URL + '" class="estudio-turno-btn" target="_blank" rel="noopener"><i class="fa-solid fa-calendar-plus"></i> Sacar Turno</a></div>';
+                } else {
+                    html = '<div class="popup-estudio-detail">' +
+                        '<div class="popup-estudio-icon"><i class="fa-solid fa-user-doctor"></i></div>' +
+                        '<h2 class="popup-estudio-title">Profesionales en ' + titleEl.textContent + '</h2>' +
+                        '<p class="popup-no-data">Próximamente se incorporarán profesionales para esta especialidad.<br>Para consultas, comuníquese al 02320-409730</p>' +
+                        '<div class="popup-turno"><a href="' + TURNO_URL + '" class="estudio-turno-btn" target="_blank" rel="noopener"><i class="fa-solid fa-calendar-plus"></i> Sacar Turno</a></div>' +
+                        '</div>';
+                }
+                openModal(html);
+            });
+        });
     }
 
-    // Show coming soon message
-    function showComingSoon(specialty) {
-        doctorsGrid.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
-                <i class="fa-solid fa-user-doctor" style="font-size: 64px; color: var(--primary); margin-bottom: 20px;"></i>
-                <h3 style="font-size: 24px; margin-bottom: 12px; color: var(--text-primary);">Información Próximamente</h3>
-                <p style="color: var(--text-secondary); font-size: 16px;">
-                    Los profesionales de ${specialty} estarán disponibles pronto.<br>
-                    Para consultas, comuníquese al 02320-409730
-                </p>
-            </div>
-        `;
+    // ===== STAFF FILTERS =====
+    var filterContainer = document.getElementById('staffFilters');
+    if (filterContainer) {
+        var toggleBtn = document.getElementById('staffFiltersToggle');
+        var filterBtns = filterContainer.querySelectorAll('.staff-filter-btn');
+        var groups = document.querySelectorAll('.staff-group');
+
+        // Toggle dropdown on mobile
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function() {
+                filterContainer.classList.toggle('open');
+            });
+        }
+
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+
+                var filter = btn.getAttribute('data-filter');
+                groups.forEach(function(group) {
+                    if (filter === 'todos' || group.getAttribute('data-category') === filter) {
+                        group.classList.remove('hidden');
+                    } else {
+                        group.classList.add('hidden');
+                    }
+                });
+
+                // Close dropdown on mobile after selecting
+                if (window.innerWidth <= 768) {
+                    filterContainer.classList.remove('open');
+                }
+            });
+        });
     }
 });
