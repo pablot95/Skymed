@@ -237,7 +237,7 @@
         'reeducacion-postural-e-infiltraciones': ['rpg'],
         'flebologia': ['flebologia', 'flebologia-y-cirugia-cardiovascular'],
         'neumologia': ['neumonologia'],
-        'diagnosticos-por-imagenes': ['oftalmologia', 'diagnosticos-por-imagenes'],
+        'diagnosticos-por-imagenes': ['diagnosticos-por-imagenes'],
         'cirugia-plastica': ['cirugia-plastica'],
         'nutricion': ['nutricion']
     };
