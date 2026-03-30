@@ -158,7 +158,7 @@
         'diagnosticos-por-imagenes': { icon: 'fa-solid fa-x-ray', title: 'Diagnósticos por Imágenes', items: ['Ecografías Craneales', 'Ecodoppler', 'Ecografía completa de Abdomen', 'Ecografías Ginecológicas', 'Ecografías Musculoesquelética', 'Punciones guiadas por ecografía'] },
         'nutricion': { icon: 'fa-solid fa-apple-whole', title: 'Nutrición', items: ['Medición Antropométrica'] },
         'cardiologia': { icon: 'fa-solid fa-heart-pulse', title: 'Cardiología', items: ['Electrocardiograma (ECG)', 'Ecocardiograma doppler', 'Holter cardíaco de 24h', 'MAPA (presurometría de 24h)'] },
-        'reeducacion-postural-e-infiltraciones': { icon: 'fa-solid fa-person-walking', title: 'Reeducación Postural e Infiltraciones', items: ['Maniobras de RPG y Vértigo'] },
+        'reeducacion-postural-e-infiltraciones': { icon: 'fa-solid fa-person-walking', title: 'Reeducación Postural', items: ['Maniobras de RPG y Vértigo'] },
         'flebologia': { icon: 'fa-solid fa-heart-circle-bolt', title: 'Flebología', items: ['Prácticas Esclerosantes', 'Trans Ilum.'] },
         'neumologia': { icon: 'fa-solid fa-lungs', title: 'Neumología', items: ['Espirometría', 'Oximetría de pulso', 'Filtro viral Bacterial', 'Módulo Poligrafía Respiratoria'] }
     };
