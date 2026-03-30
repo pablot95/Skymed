@@ -1228,6 +1228,25 @@ a.contacto-value:hover {
     color: white;
 }
 
+.footer-credit {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+}
+
+.footer-credit a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-credit a:hover {
+    color: white;
+}
+
 /* Footer Section */
 .footer-section {
     background: linear-gradient(180deg, #f8fafc 0%, #e5e7eb 100%);
