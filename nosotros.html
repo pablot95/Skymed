@@ -70,17 +70,23 @@
         </div>
                 <div class="container-fluid">
             <div class="consultorio-fotos-grid">
-                <div class="consultorio-foto-block">
+                <div class="consultorio-foto-block lightbox-trigger" data-lightbox-index="0">
                     <img src="images/consultorio.jpg" alt="Exterior SkyMed Consultorios" class="consultorio-foto">
                 </div>
-                <div class="consultorio-foto-block">
-                    <img src="images/interior.jpeg" alt="Exterior SkyMed Consultorios" class="consultorio-foto">
+                <div class="consultorio-foto-block lightbox-trigger" data-lightbox-index="1">
+                    <img src="images/consultorio2.jpeg" alt="Consultorio SkyMed" class="consultorio-foto">
                 </div>
-                <div class="consultorio-foto-block">
-                    <img src="images/interior2.jpeg" alt="Exterior SkyMed Consultorios" class="consultorio-foto">
+                <div class="consultorio-foto-block lightbox-trigger" data-lightbox-index="2">
+                    <img src="images/interior.jpeg" alt="Interior SkyMed Consultorios" class="consultorio-foto">
                 </div>
-                                <div class="consultorio-foto-block">
-                    <img src="images/otroconsultorio.jpeg" alt="Exterior SkyMed Consultorios" class="consultorio-foto">
+                <div class="consultorio-foto-block lightbox-trigger" data-lightbox-index="3">
+                    <img src="images/consultorio3.jpeg" alt="Consultorio SkyMed" class="consultorio-foto">
+                </div>
+                <div class="consultorio-foto-block lightbox-trigger" data-lightbox-index="4">
+                    <img src="images/otroconsultorio.jpeg" alt="Sala de espera SkyMed" class="consultorio-foto">
+                </div>
+                <div class="consultorio-foto-block lightbox-trigger" data-lightbox-index="5">
+                    <img src="images/consultorio4.jpeg" alt="Consultorio SkyMed" class="consultorio-foto">
                 </div>
             </div>
         </div>
@@ -99,6 +105,18 @@
             <span>Developed and designed by: <a href="https://gokywebs.net" target="_blank" rel="noopener">Gokywebs</a></span>
         </div>
     </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="nosotrosLightbox" role="dialog" aria-modal="true">
+        <div class="lightbox-overlay" id="lightboxOverlay"></div>
+        <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="lightbox-img-wrap">
+            <img src="" alt="" class="lightbox-img" id="lightboxImg">
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+        </div>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
 
     <script src="js/main.js"></script>
 </body>

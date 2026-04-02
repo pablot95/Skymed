@@ -341,6 +341,62 @@
         });
     }
 
+    // ===== LIGHTBOX (Nosotros) =====
+    var lightbox = document.getElementById('nosotrosLightbox');
+    if (lightbox) {
+        var lbImg = document.getElementById('lightboxImg');
+        var lbCaption = document.getElementById('lightboxCaption');
+        var lbClose = document.getElementById('lightboxClose');
+        var lbOverlay = document.getElementById('lightboxOverlay');
+        var lbPrev = document.getElementById('lightboxPrev');
+        var lbNext = document.getElementById('lightboxNext');
+        var lbTriggers = Array.from(document.querySelectorAll('.lightbox-trigger'));
+        var lbCurrent = 0;
+
+        function lbOpen(index) {
+            lbCurrent = index;
+            var block = lbTriggers[index];
+            var img = block.querySelector('img');
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lbCaption.textContent = img.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function lbClose_fn() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function lbGo(dir) {
+            lbCurrent = (lbCurrent + dir + lbTriggers.length) % lbTriggers.length;
+            var block = lbTriggers[lbCurrent];
+            var img = block.querySelector('img');
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lbCaption.textContent = img.alt;
+        }
+
+        lbTriggers.forEach(function(block) {
+            block.addEventListener('click', function() {
+                lbOpen(parseInt(block.getAttribute('data-lightbox-index'), 10));
+            });
+        });
+
+        lbClose.addEventListener('click', lbClose_fn);
+        lbOverlay.addEventListener('click', lbClose_fn);
+        lbPrev.addEventListener('click', function() { lbGo(-1); });
+        lbNext.addEventListener('click', function() { lbGo(1); });
+
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') lbClose_fn();
+            if (e.key === 'ArrowLeft') lbGo(-1);
+            if (e.key === 'ArrowRight') lbGo(1);
+        });
+    }
+
     // ===== STAFF FILTERS =====
     var filterContainer = document.getElementById('staffFilters');
     if (filterContainer) {
