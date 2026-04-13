@@ -184,7 +184,7 @@
         { name: 'Lic. Schlumpp, Mariana', specialty: 'nutricion', specialtyLabel: 'Nutrición', image: 'images/staff/17.jpeg', insurance: 'Osde y particular' },
         { name: 'Dra. Bado, Cristina', specialty: 'ginecologia', specialtyLabel: 'Ginecología', image: 'images/staff/18.jpeg', insurance: 'Osde y particular' },
         { name: 'Dra. Heer, Carolina', specialty: 'ginecologia', specialtyLabel: 'Ginecología', image: 'images/staff/19.jpeg', insurance: 'Osde y particular' },
-        { name: 'Dra. Signorelli, Mariela', specialty: 'gastroenterologia', specialtyLabel: 'Gastroenterología', image: 'images/staff/20.jpeg', insurance: 'Sólo particular' },
+        { name: 'Dra. Signorelli, Mariela', specialty: 'gastroenterologia', specialtyLabel: 'Gastroenterología', image: 'images/staff/20.jpeg', insurance: 'Osde y particular' },
         { name: 'Dra. Linares, María Eugenia', specialty: 'gastroenterologia', specialtyLabel: 'Gastroenterología', image: 'images/staff/21.jpeg', insurance: 'Sólo particular' },
         { name: 'Dra. Pulvirenti, Liliana', specialty: 'pediatria', specialtyLabel: 'Pediatría', image: 'images/staff/22.jpeg', insurance: 'Osde y particular' },
         { name: 'Dr. Bruhn, Arturo', specialty: 'pediatria', specialtyLabel: 'Pediatría', image: 'images/staff/23.jpeg', insurance: 'Osde y particular' },

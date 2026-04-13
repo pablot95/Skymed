@@ -1058,9 +1058,9 @@ body {
 }
 
 .staff-group[data-count="4"] { grid-column: span 4; }
-.staff-group[data-count="3"] { grid-column: span 3; }
-.staff-group[data-count="2"] { grid-column: span 2; }
-.staff-group[data-count="1"] { grid-column: span 1; }
+.staff-group[data-count="3"] { grid-column: span 4; }
+.staff-group[data-count="2"] { grid-column: span 4; }
+.staff-group[data-count="1"] { grid-column: span 4; }
 
 
 
@@ -1546,7 +1546,6 @@ a.contacto-value:hover {
     min-width: 0;
     border-radius: 20px;
     box-shadow: var(--shadow-md);
-    min-width: 1200px;
 }
 
 .index-section-img--double img {
