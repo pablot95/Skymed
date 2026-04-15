@@ -1518,7 +1518,7 @@ a.contacto-value:hover {
 
 .index-section-wrapper {
     display: grid;
-    grid-template-columns: 1fr 35%;
+    grid-template-columns: 1fr 32%;
     gap: 56px;
     align-items: center;
     position: relative;
